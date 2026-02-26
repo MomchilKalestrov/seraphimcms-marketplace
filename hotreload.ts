@@ -16,6 +16,7 @@ const restart = () => {
     childProcess = spawn('pnpm', [ 'run', 'start' ]);
 
     childProcess.stdout.on('data', data => console.log(data.toString()));
+    childProcess.stderr.on('data', data => console.error(data.toString()));
 };
 
 watcher.on('change', () => {
