@@ -192,4 +192,13 @@ app.post('/api/get-author', async (req, res) => {
     return res.send(author);
 });
 
+if(!process.env.VERCEL) {
+    const httpsServer = https.createServer({
+        key: process.env.SSL_KEY,
+        cert: process.env.SSL_CERT
+    }, app);
+
+    httpsServer.listen(8080);
+};
+
 export default app;
