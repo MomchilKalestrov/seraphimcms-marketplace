@@ -192,9 +192,4 @@ app.post('/api/get-author', async (req, res) => {
     return res.send(author);
 });
 
-const httpsServer = https.createServer({
-    key: process.env.SSL_KEY,
-    cert: process.env.SSL_CERT
-}, app);
-
-httpsServer.listen(Number(process.env.PORT) || 3000);
+export default app;
