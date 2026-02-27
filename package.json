@@ -2,10 +2,10 @@
     "name": "seraphimcms-marketplace",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/main.js",
+    "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
-        "start": "node dist/main.js",
+        "start": "node dist/index.js",
         "dev": "tsc hotreload.ts && node hotreload.js"
     },
     "keywords": [],

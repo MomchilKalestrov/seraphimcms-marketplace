@@ -24,7 +24,12 @@ app.use((res, _, next) => {
 });
 
 app.post('/api/get-plugins', async (req, res) => {
-    const { skip, count } = schemas.getPluginsBodySchema.parse(req.body);
+    try {
+        var { skip, count } = schemas.getPluginsBodySchema.parse(req.body);
+    } catch (error) {
+        res.sendStatus(400);
+        return;
+    };
 
     await connect();
 
@@ -53,7 +58,12 @@ app.post('/api/get-plugins', async (req, res) => {
 });
 
 app.post('/api/get-plugins-by-query', async (req, res) => {
-    const { query, skip, count } = schemas.getPluginsByQueryBodySchema.parse(req.body);
+    try {
+        var { query, skip, count } = schemas.getPluginsByQueryBodySchema.parse(req.body);
+    } catch (error) {
+        res.sendStatus(400);
+        return;
+    };
 
     await connect();
 
@@ -139,7 +149,12 @@ app.post('/api/get-plugins-by-query', async (req, res) => {
 });
 
 app.post('/api/get-plugin', async (req, res) => {
-    const { name } = schemas.getPluginBodySchema.parse(req.body);
+    try {
+        var { name } = schemas.getPluginBodySchema.parse(req.body);
+    } catch {
+        res.sendStatus(400);
+        return;
+    };
 
     await connect();
 
@@ -168,7 +183,12 @@ app.post('/api/get-plugin', async (req, res) => {
 });
 
 app.post('/api/get-author', async (req, res) => {
-    const { name } = schemas.getAuthorBodySchema.parse(req.body);
+    try {
+        var { name } = schemas.getAuthorBodySchema.parse(req.body);
+    } catch {
+        res.sendStatus(400);
+        return;
+    };
 
     await connect();
 

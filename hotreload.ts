@@ -12,7 +12,7 @@ const restart = () => {
     if (childProcess)
         childProcess.kill();
     
-    spawnSync('pnpm', [ 'run', 'build' ]);
+    spawnSync('pnpm', [ 'run', 'build' ], { stdio: 'inherit' });
     childProcess = spawn('pnpm', [ 'run', 'start' ]);
 
     childProcess.stdout.on('data', data => console.log(data.toString()));
