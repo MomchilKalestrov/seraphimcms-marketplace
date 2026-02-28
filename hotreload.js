@@ -1,12 +1,14 @@
-import * as fs from 'fs';
-import { type ChildProcessWithoutNullStreams, spawn, spawnSync } from 'child_process';
+//@ts-check
+import * as fs from 'node:fs';
+import { spawn, spawnSync } from 'node:child_process';
 
 const watcher = fs.watch('./src/', {
     persistent: true,
     recursive: true
 });
 
-let childProcess: ChildProcessWithoutNullStreams | null = null;
+/** @type { import('node:child_process').ChildProcessWithoutNullStreams | null } */
+let childProcess = null;
 
 const restart = () => {
     if (childProcess)

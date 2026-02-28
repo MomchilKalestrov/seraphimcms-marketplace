@@ -3,10 +3,11 @@
     "version": "1.0.0",
     "description": "",
     "main": "dist/index.js",
+    "type": "module",
     "scripts": {
         "build": "tsc",
         "start": "node dist/index.js",
-        "dev": "tsc hotreload.ts && node hotreload.js"
+        "dev": "node hotreload.js"
     },
     "keywords": [],
     "author": "",
