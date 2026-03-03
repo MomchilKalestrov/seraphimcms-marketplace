@@ -1,6 +1,6 @@
 import express from 'express';
 import validate from '../lib/validate.ts';
-import { getPluginsBodySchema } from '../lib/zodSchemas.ts';
+import { getPluginBodySchema } from '../lib/zodSchemas.ts';
 import Plugin from '../models/plugin.ts';
 
 const router = express.Router();
@@ -28,7 +28,7 @@ const router = express.Router();
 //      } }
 //  ]);
 
-router.post('/get-plugin', validate(getPluginsBodySchema), async ({ body: { name } }, res) => {
+router.post('/get-plugin', validate(getPluginBodySchema), async ({ body: { name } }, res) => {
     const plugin = await Plugin.findOne({ name }) as any; // cast to any because we will be modifying
     plugin.iconUrl = `${ process.env.DATA_URL }/plugins/${ name }/icon.png`;
     plugin.downloadUrl = `${ process.env.DATA_URL }/plugins/${ name }/plugin.zip`;

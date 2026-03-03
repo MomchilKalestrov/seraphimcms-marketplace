@@ -6,7 +6,6 @@ const validate = (schema: z.ZodObject): RequestHandler => (req, res, next) => {
         req.body = schema.parse(req.body);
         next();
     } catch (error) {
-        console.log(error)
         res.sendStatus(400);
     };
 };

@@ -20,9 +20,15 @@ app.use((res, _, next) => {
     next();
 });
 
-app.use(async (_, __, next) => {
-    await connect();
-    next();
+app.use(async (_, res, next) => {
+    try {
+        await connect();
+        next();
+    } catch {
+        console.error('COULD NOT CONNECT TO DATABASE!');
+        res.sendStatus(500);
+        process.exit(-1);
+    };
 });
 
 app.use('/api', router);
