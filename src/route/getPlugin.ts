@@ -29,12 +29,13 @@ const router = express.Router();
 //  ]);
 
 router.post('/get-plugin', validate(getPluginBodySchema), async ({ body: { name } }, res) => {
-    const plugin = await Plugin.findOne({ name }) as any; // cast to any because we will be modifying
+    const plugin = await Plugin.findOne({ name }).lean() as any; // cast to any because we will be modifying
     plugin.iconUrl = `${ process.env.DATA_URL }/plugins/${ name }/icon.png`;
     plugin.downloadUrl = `${ process.env.DATA_URL }/plugins/${ name }/plugin.zip`;
     delete plugin._id;
     delete plugin.__v;
     
+    console.log('sending', plugin)
 
     return res.send(plugin);
 });
